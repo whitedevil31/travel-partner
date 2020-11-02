@@ -12,11 +12,29 @@ router.post("/travel", async (req, res) => {
   }
 });
 
-router.get("/travelfind", async (req, res) => {
-  const reqData = req.body;
-  console.log(reqData);
-  const location = await Travel.find(reqData);
-  res.send(location);
+router.get("/filter", async (req, res) => {
+  try {
+    // const reqData = req.body;
+    // const reqDatagte = req.body.$gte;
+    // const reqDatalte = req.body.$lte;
+    // const reqDataLoc = req.body.location;
+
+    const response = await Travel.find({
+      location: req.body.location,
+      startDate: { $gte: req.body.startDate, $lte: req.body.endDate },
+    });
+    res.send({ response });
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+router.get("/filterdate", async (req, res) => {
+  try {
+    const reqData = req.body;
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 module.exports = router;

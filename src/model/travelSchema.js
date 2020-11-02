@@ -1,16 +1,14 @@
 const mongoose = require("mongoose");
 
-const travelSchema = new mongoose.Schema(
-  {
-    location: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    date: { type: String },
+const travelSchema = new mongoose.Schema({
+  location: {
+    type: String,
+    required: true,
+    trim: true,
   },
-  { timestamps: true }
-);
+  startDate: { type: Date },
+  endDate: { type: Date },
+});
 
 const Travel = mongoose.model("Travel", travelSchema);
 module.exports = Travel;
