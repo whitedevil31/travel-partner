@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 
 app.use(userRoute);
 app.use(travelRoute);
-Port = process.env.port;
+Port = process.env.port || 8080;
 app.listen(Port, () => {
   console.log(`server is up on port ${Port}`);
 });
