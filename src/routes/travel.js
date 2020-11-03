@@ -14,11 +14,6 @@ router.post("/travel", async (req, res) => {
 
 router.get("/filter", async (req, res) => {
   try {
-    // const reqData = req.body;
-    // const reqDatagte = req.body.$gte;
-    // const reqDatalte = req.body.$lte;
-    // const reqDataLoc = req.body.location;
-
     const response = await Travel.find({
       location: req.body.location,
       startDate: { $gte: req.body.startDate, $lte: req.body.endDate },
