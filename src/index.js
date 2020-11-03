@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 
 app.use(userRoute);
 app.use(travelRoute);
-Port = process.env.port || 3000;
-app.listen(Port, () => {
-  console.log(`server is up on port ${Port}`);
+port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log("server is up on port " + port);
 });
