@@ -45,7 +45,8 @@ userSchema.methods.toJSON = function () {
   return userObject;
 };
 
-userSchema.virtual("TravelPost", {
+userSchema.virtual("travel", {
+  // any name is fine
   ref: "TravelPost",
   localField: "_id",
   foreignField: "owner",

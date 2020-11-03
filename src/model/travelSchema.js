@@ -8,6 +8,7 @@ const travelSchema = new mongoose.Schema({
   },
   startDate: { type: Date },
   endDate: { type: Date },
+  owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Users" },
 });
 
 const Travel = mongoose.model("Travel", travelSchema);

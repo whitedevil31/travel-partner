@@ -22,5 +22,5 @@ app.use(userRoute);
 app.use(travelRoute);
 Port = process.env.port;
 app.listen(Port, () => {
-  console.log(`server is up on port `);
+  console.log(`server is up on port ${process.env.port}`);
 });
