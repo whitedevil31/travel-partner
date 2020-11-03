@@ -1,9 +1,10 @@
 const express = require("express");
 const Travel = require("../model/travelSchema");
 const router = express.Router();
+const auth = require("../auth");
 
-router.post("/travel", async (req, res) => {
-  const travelPost = new Travel(req.body);
+router.post("/travel", auth, async (req, res) => {
+  const travelPost = new Travel({ ...req.body, owner: req.body._id });
   try {
     await travelPost.save();
     res.status(201).send({ travelPost });
