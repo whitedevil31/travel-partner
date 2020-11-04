@@ -18,7 +18,7 @@ router.post("/travel", auth, async (req, res) => {
   }
 });
 
-router.get("/travel/filter", auth, async (req, res) => {
+router.post("/travel/filter", auth, async (req, res) => {
   try {
     const response = await Travel.find({
       location: req.body.location,
