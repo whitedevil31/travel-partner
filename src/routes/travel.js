@@ -24,7 +24,7 @@ router.get("/travel/filter", auth, async (req, res) => {
       location: req.body.location,
       startDate: { $gte: req.body.startDate, $lte: req.body.endDate },
     });
-    res.send({ response });
+    res.send(response);
   } catch (e) {
     console.log(e);
   }
