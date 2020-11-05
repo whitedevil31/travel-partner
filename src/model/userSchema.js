@@ -33,6 +33,8 @@ const userSchema = new mongoose.Schema(
         }
       },
     },
+    age: { type: Number, required: true, trime: true },
+    gender: { type: String, required: true, trime: true, lowercase: true },
     tokens: [{ token: { type: String, required: true } }],
   },
   { timestamps: true }
@@ -45,12 +47,27 @@ userSchema.methods.toJSON = function () {
   return userObject;
 };
 
-userSchema.virtual("travel", {
-  // any name is fine
-  ref: "TravelPost",
-  localField: "_id",
-  foreignField: "owner",
-});
+userSchema.virtual(
+  "travel",
+  {
+    // any name is fine
+    ref: "TravelPost",
+    localField: "_id",
+    foreignField: "owner",
+  },
+  {
+    ref: "TravelPost",
+    localField: "name",
+    foreignField: "ownerName",
+  },
+  {
+    ref: "TravelPost",
+    localField: "age",
+    foreignField: "ownerAge",
+  },
+  { ref: "TravelPost", localField: "gener", foreignField: "ownerGender" }
+);
+
 userSchema.methods.generateAuthToken = async function () {
   const user = this;
   const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_KEY);
