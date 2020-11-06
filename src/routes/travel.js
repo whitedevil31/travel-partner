@@ -36,7 +36,7 @@ router.post("/travel/filter", auth, async (req, res) => {
   }
 });
 
-router.get("/travel/:id", async (req, res) => {
+router.get("/travel/:id", auth, async (req, res) => {
   const id = req.params.id;
   try {
     const post = await Travel.findById(id);
