@@ -36,9 +36,11 @@ router.post("/travel/filter", auth, async (req, res) => {
   }
 });
 
-router.get("/filterdate", async (req, res) => {
+router.get("/travel/:id", async (req, res) => {
+  const id = req.params.id;
   try {
-    const reqData = req.body;
+    const post = await Travel.findById(id);
+    res.send(post);
   } catch (e) {
     console.log(e);
   }
