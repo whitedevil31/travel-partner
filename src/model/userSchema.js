@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema(
         }
       },
     },
+    avatar: { type: Buffer },
     password: {
       type: String,
       required: true,
@@ -35,7 +36,7 @@ const userSchema = new mongoose.Schema(
     },
     age: { type: Number, required: true, trime: true },
     gender: { type: String, required: true, trime: true, lowercase: true },
-    avatar: { type: Buffer },
+
     tokens: [{ token: { type: String, required: true } }],
   },
   { timestamps: true }
