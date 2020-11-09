@@ -30,12 +30,6 @@ app.use((req, res, next) => {
 app.use(userRoute);
 app.use(travelRoute);
 
-const multer = require("multer");
-const upload = multer({ dest: "images" });
-app.post("/upload", upload.single("avatar"), (req, res) => {
-  res.send();
-});
-
 port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log("server is up on port " + port);

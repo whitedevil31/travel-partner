@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema(
         }
       },
     },
-    avatar: { type: Buffer },
+
     password: {
       type: String,
       required: true,
@@ -34,10 +34,12 @@ const userSchema = new mongoose.Schema(
         }
       },
     },
+
     age: { type: Number, required: true, trime: true },
     gender: { type: String, required: true, trime: true, lowercase: true },
 
     tokens: [{ token: { type: String, required: true } }],
+    pictures: { type: Buffer },
   },
   { timestamps: true }
 );
@@ -46,7 +48,7 @@ userSchema.methods.toJSON = function () {
   const userObject = user.toObject();
   delete userObject.password;
   delete userObject.tokens;
-  delete userObject.avatar;
+  delete userObject.picture;
   return userObject;
 };
 
@@ -68,7 +70,7 @@ userSchema.virtual(
     localField: "age",
     foreignField: "ownerAge",
   },
-  { ref: "TravelPost", localField: "gener", foreignField: "ownerGender" }
+  { ref: "TravelPost", localField: "gender", foreignField: "ownerGender" }
 );
 
 userSchema.methods.generateAuthToken = async function () {

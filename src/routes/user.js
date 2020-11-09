@@ -58,36 +58,35 @@ const upload = multer({
   },
 });
 router.post(
-  "/users/me/avatar",
+  "/users/me/pictures",
   auth,
-  upload.single("avatar"),
+  upload.single("pictures"),
   async (req, res) => {
-    try {
-      const buffer = await sharp(req.file.buffer)
-        .resize({ width: 250, height: 250 })
-        .png()
-        .toBuffer();
-      req.user.avatar = buffer;
-      await req.user.save();
-      res.send();
-    } catch (e) {
-      res.status(400).send({ e: e.message });
-    }
+    const buffer = await sharp(req.file.buffer)
+      .resize({ width: 250, height: 250 })
+      .png()
+      .toBuffer();
+    req.user.pictures = buffer;
+    await req.user.save();
+    res.send();
+  },
+  (error, req, res, next) => {
+    res.status(400).send({ error: error.message });
   }
 );
 
-router.get("/users/:id/avatar", async (req, res) => {
+router.get("/users/:id/pictures", auth, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
 
-    if (!user || !user.avatar) {
+    if (!user || !user.pictures) {
       throw new Error();
     }
 
     res.set("Content-Type", "image/png");
-    res.send(user.avatar);
+    res.send(user.pictures);
   } catch (e) {
-    res.status(404).send();
+    res.status(404).send(e);
   }
 });
 
