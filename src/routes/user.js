@@ -75,7 +75,7 @@ router.post(
   }
 );
 
-router.get("/users/:id/pictures", auth, async (req, res) => {
+router.get("/users/:id/pictures", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
 
