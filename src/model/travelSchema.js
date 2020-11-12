@@ -12,6 +12,7 @@ const travelSchema = new mongoose.Schema({
   ownerName: { type: String, ref: "Users", required: true },
   ownerAge: { type: Number, ref: "Users", required: true },
   ownerGender: { type: String, ref: "Users", required: true },
+  ownerBio: { type: String, ref: "Users", required: true },
 });
 
 const Travel = mongoose.model("Travel", travelSchema);

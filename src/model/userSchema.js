@@ -34,6 +34,7 @@ const userSchema = new mongoose.Schema(
         }
       },
     },
+    bio: { type: String, required: true },
 
     age: { type: Number, required: true, trime: true },
     gender: { type: String, required: true, trime: true, lowercase: true },
@@ -70,7 +71,8 @@ userSchema.virtual(
     localField: "age",
     foreignField: "ownerAge",
   },
-  { ref: "TravelPost", localField: "gender", foreignField: "ownerGender" }
+  { ref: "TravelPost", localField: "gender", foreignField: "ownerGender" },
+  { ref: "TravelPost", localField: "bio", foreignField: "ownerBio" }
 );
 
 userSchema.methods.generateAuthToken = async function () {
