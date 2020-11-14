@@ -11,6 +11,7 @@ router.post("/travel", auth, async (req, res) => {
     ownerName: req.user.name,
     ownerAge: req.user.age,
     ownerGender: req.user.gender,
+    ownerBio: req.user.bio,
   });
   const userPost = req.user._id;
 
